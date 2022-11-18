@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app
+spec:
+  selector:
+    matchLabels:
+      name: app
+      app: python-app
+  template:
+    metadata:
+      labels:
+        name: app
+        app: python-app
+    spec:
+      containers:
+      - name: app
+        image: gcr.io/gcp-final-project-368718/app:latest
+        resources:
+        ports:
+        - name: python-port
+          containerPort: 8000
+      - name: redis
+        image: redis
+        ports:
+        - name: redis-port
+          containerPort: 6379
