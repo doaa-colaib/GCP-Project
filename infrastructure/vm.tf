@@ -16,10 +16,6 @@ resource "google_compute_instance" "private-vm" {
   network_interface {
     network    = google_compute_network.my-vpc.name
     subnetwork = google_compute_subnetwork.management-subnet.name
-//    access_config {
-//      // Ephemeral public IP
-//      nat_ip = google_compute_address.nat-ip.address
-//    }
   }
 
   service_account {
@@ -29,6 +25,4 @@ resource "google_compute_instance" "private-vm" {
   }
 
   metadata_startup_script = file("${path.module}/startup-script.sh")
-//  = file("./startup-script.sh")
-
 }
